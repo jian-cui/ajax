@@ -168,6 +168,8 @@ export let ajax2 = function (params) {
                 }
                 ajaxParams.url = url;
             }
+            xhr.open("GET", ajaxParams.url, ajaxParams.async);
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             xhr.send(null);
             // xhr.send(ajaxParams.data);
@@ -176,7 +178,6 @@ export let ajax2 = function (params) {
             // 将csrf token加入header中
             // 做CSRF预防 end
             xhr.open("POST", ajaxParams.url, ajaxParams.async);
-            console.log('csrftoken', getCookie('csrftoken'));
             xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
             xhr.send(ajaxParams.data);
